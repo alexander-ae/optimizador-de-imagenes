@@ -37,24 +37,29 @@ def optimize_image(img, input, output):
     ''' Optimiza una imagen '''
     image_type = imghdr.what(img)
     if image_type == 'jpeg':
-        pass
+        optimize_jpg(img, input, output)
+
     elif image_type == 'png':
-        optimize_png(img, input, output)
+        pass
+        # optimize_png(img, input, output)
+
+
+def optimize_jpg(input_jpg, input_folder, output_folder):
+    ''' Optimiza un archivo JPG '''
+    output_jpg = input_jpg.replace(input_folder, output_folder)
+
+    cjpeg_command = 'convert "{}" pnm:- | cjpeg -optimize -baseline -quality 75 > "{}"'.format(
+        input_jpg,
+        output_jpg
+    )
+
+    print(cjpeg_command)
+    os.system(cjpeg_command)
 
 
 def optimize_png(input_png, input_folder, output_folder):
     ''' Optimiza un archivo PNG '''
     output_png = input_png.replace(input_folder, output_folder)
-
-    '''
-    optimpng_command = 'optipng -o7 -strip all -dir "{}" "{}"'.format(
-        os.path.dirname(output_png),
-        input_png
-    )
-
-    print(optimpng_command)
-    os.system(optimpng_command)
-    '''
 
     pngquant_command = 'pngquant --quality=75-90 -o"{}" "{}"'.format(
         output_png,

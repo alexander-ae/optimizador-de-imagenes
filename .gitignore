@@ -92,3 +92,4 @@ ENV/
 # custom
 .idea
 output
+.directory
