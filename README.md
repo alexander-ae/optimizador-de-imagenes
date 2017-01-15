@@ -11,7 +11,7 @@ Script en python que optimiza las imágenes en un directorio mediante otras herr
 ## Uso
 
 ```
-odi.py [-h] [input] [output]
+odi.py [-h] [-v] [input] [output]
 
 positional arguments:
   input       Directorio que contiene los archivos de entrada, por defecto
@@ -19,6 +19,9 @@ positional arguments:
   output      Directorio destino de las imágenes optimizadas, por defecto
               genera la salida en el directorio "output"
 
+optional arguments:
+  -h, --help  show this help message and exit
+  -v          ejemplo: -v o -vv
 ```
 
 ## Imágenes de Prueba

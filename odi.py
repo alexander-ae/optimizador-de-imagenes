@@ -3,6 +3,7 @@
 import os
 import imghdr
 import argparse
+import logging
 
 
 def main():
@@ -10,7 +11,12 @@ def main():
 
     args = arguments()
 
-    print(args)
+    levels = [logging.WARNING, logging.INFO, logging.DEBUG]
+    level = levels[min(len(levels) - 1, args.verbose)]
+
+    logging.basicConfig(level=level, format='%(levelname)s %(message)s')
+
+    logging.debug(args)
 
     _files = []
 
@@ -19,16 +25,18 @@ def main():
 
     for root, dirs, files in os.walk(args.input):
         for name in files:
-            print(os.path.join(root, name))
+            logging.debug(os.path.join(root, name))
             _files.append(os.path.join(root, name))
 
         for name in dirs:
             _dir = os.path.join(root, name)
-            print(os.path.join(root, name))
+            logging.debug(os.path.join(root, name))
             recreate_output(args.input, args.output, _dir)
 
     for _file in _files:
         optimize_image(_file, args.input, args.output)
+
+    logging.info('Proceso terminado')
 
 
 def arguments():
@@ -40,6 +48,7 @@ def arguments():
     parser.add_argument('output', default='output/', nargs='?',
                         help='Directorio destino de las imágenes optimizadas, '
                              'por defecto genera la salida en el directorio "output"')
+    parser.add_argument('-v', action='count', default=0, help='ejemplo: -v o -vv')
 
     return parser.parse_args()
 
@@ -71,7 +80,7 @@ def optimize_jpg(input_jpg, input_folder, output_folder):
         output_jpg
     )
 
-    print(cjpeg_command)
+    logging.debug(cjpeg_command)
     os.system(cjpeg_command)
 
 
@@ -79,12 +88,12 @@ def optimize_png(input_png, input_folder, output_folder):
     ''' Optimiza un archivo PNG '''
     output_png = input_png.replace(input_folder, output_folder)
 
-    pngquant_command = 'pngquant --quality=75-90 -o"{}" "{}"'.format(
+    pngquant_command = 'pngquant -f --quality=75-90 -o"{}" "{}"'.format(
         output_png,
         input_png
     )
 
-    print(pngquant_command)
+    logging.debug(pngquant_command)
     os.system(pngquant_command)
 
 
