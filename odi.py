@@ -1,4 +1,5 @@
-# !/usr/bin/python
+#!/usr/bin/python3
+
 import os
 import imghdr
 
@@ -40,8 +41,7 @@ def optimize_image(img, input, output):
         optimize_jpg(img, input, output)
 
     elif image_type == 'png':
-        pass
-        # optimize_png(img, input, output)
+        optimize_png(img, input, output)
 
 
 def optimize_jpg(input_jpg, input_folder, output_folder):

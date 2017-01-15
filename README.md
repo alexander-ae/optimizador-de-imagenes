@@ -1,11 +1,16 @@
 # optimizador-de-imagenes
 Script en python que optimiza las imágenes en un directorio mediante otras herramientas especializadas.
 
-# Dependencias
+## Dependencias
 
 * Python 3
 * pngquant: https://pngquant.org/
 * mozjpeg: https://github.com/mozilla/mozjpeg
+* ImageMagic: https://www.imagemagick.org/script/convert.php
+
+## Uso
+
+`./odi.py`
 
 ## Imágenes de Prueba
 
@@ -13,7 +18,7 @@ Script en python que optimiza las imágenes en un directorio mediante otras herr
 
 * Música Placa Giratoria Nostalgia - Pixabay : https://pixabay.com/es/m%C3%BAsica-placa-giratoria-nostalgia-1727912/
 * Calophyllum antillanum - Wikimedia : https://es.m.wikipedia.org/wiki/Archivo:Calophyllum_antillanum_(Palo_Mar%C3%ADa)_picture_1.png
-* Ninja (PNG) - Pixabay : https://pixabay.com/es/negro-ninja-espadas-m%C3%A1scaras-307983/#
+* Ninja - Pixabay : https://pixabay.com/es/negro-ninja-espadas-m%C3%A1scaras-307983/#
 
 ### JPG
 
