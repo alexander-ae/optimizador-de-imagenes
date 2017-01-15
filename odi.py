@@ -2,16 +2,22 @@
 
 import os
 import imghdr
-
-IMAGE_JPEG = 'jpeg'
-IMAGE_PNG = 'png'
+import argparse
 
 
-def scan_folder(input, output):
-    ''' Recorre un directorio y retorna la lista de todas las imágenes '''
+def main():
+    ''' Recorre un directorio, localiza las imágenes y las optimiza '''
+
+    args = arguments()
+
+    print(args)
+
     _files = []
 
-    for root, dirs, files in os.walk(input):
+    if not os.path.exists(args.output):
+        os.makedirs(args.output)
+
+    for root, dirs, files in os.walk(args.input):
         for name in files:
             print(os.path.join(root, name))
             _files.append(os.path.join(root, name))
@@ -19,11 +25,23 @@ def scan_folder(input, output):
         for name in dirs:
             _dir = os.path.join(root, name)
             print(os.path.join(root, name))
-            recreate_output(input, output, _dir)
-
+            recreate_output(args.input, args.output, _dir)
 
     for _file in _files:
-        optimize_image(_file, input, output)
+        optimize_image(_file, args.input, args.output)
+
+
+def arguments():
+    ''' Interpreta las opciones ingresadas por la línea de comandos '''
+    parser = argparse.ArgumentParser(description='Optimiza las imágenes (jpg, png) del directorio indicado')
+
+    parser.add_argument('input', default='input/', nargs='?', help='Directorio que contiene los archivos de entrada, '
+                                                              'por defecto procesa el directorio llamado "input"')
+    parser.add_argument('output', default='output/', nargs='?',
+                        help='Directorio destino de las imágenes optimizadas, '
+                             'por defecto genera la salida en el directorio "output"')
+
+    return parser.parse_args()
 
 
 def recreate_output(input, output, path):
@@ -71,7 +89,4 @@ def optimize_png(input_png, input_folder, output_folder):
 
 
 if __name__ == '__main__':
-    INPUT_FOLDER = 'input'
-    OUTPUT_FOLDER = 'output'
-
-    scan_folder(INPUT_FOLDER, OUTPUT_FOLDER)
+    main()
