@@ -3,12 +3,14 @@ Script en python que optimiza las imágenes en un directorio mediante otras herr
 
 ## Dependencias
 
-* Python 3
+* Python 2 o Python 3
 * pngquant: https://pngquant.org/
 * mozjpeg: https://github.com/mozilla/mozjpeg
 * ImageMagic: https://www.imagemagick.org/script/convert.php
 
 ## Uso
+
+Descargar el script y ejecutarlo directamente:
 
 ```
 odi.py [-h] [-v] input [output]
@@ -38,3 +40,15 @@ optional arguments:
 * Biblioteca - Freejpg : http://www.freejpg.com.ar/free/info/100007727/biblioteca
 * Silhouette Male Man - Avopix : https://avopix.com/photo/12358-silhouette-male-man
 * Sea - Cupcake : http://cupcake.nilssonlee.se/
+
+
+## Resultados
+
+Para las imágenes de prueba indicadas anteriormente:
+
+|     | Entrada | Salida |
+|-----|---------|--------|
+| JPG | 11.8 MB | 2.0 MB |
+| PNG | 3.3 MB  | 1.0 MB |
+
+**Nota:** Los resultados finales pueden variar según el tipo de imágenes utilizadas.
