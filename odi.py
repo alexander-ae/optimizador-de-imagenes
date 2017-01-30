@@ -12,7 +12,7 @@ def main():
     args = arguments()
 
     levels = [logging.WARNING, logging.INFO, logging.DEBUG]
-    level = levels[min(len(levels) - 1, args.verbose)]
+    level = levels[min(len(levels) - 1, args.v)]
 
     logging.basicConfig(level=level, format='%(levelname)s %(message)s')
 
@@ -44,7 +44,7 @@ def arguments():
     parser = argparse.ArgumentParser(description='Optimiza las imágenes (jpg, png) del directorio indicado')
 
     parser.add_argument('input', default='input/', nargs='?', help='Directorio que contiene los archivos de entrada, '
-                                                              'por defecto procesa el directorio llamado "input"')
+                                                                   'por defecto procesa el directorio llamado "input"')
     parser.add_argument('output', default='output/', nargs='?',
                         help='Directorio destino de las imágenes optimizadas, '
                              'por defecto genera la salida en el directorio "output"')
