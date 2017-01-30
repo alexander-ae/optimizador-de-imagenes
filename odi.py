@@ -4,6 +4,7 @@ import os
 import imghdr
 import argparse
 import logging
+import sys
 
 
 def main():
@@ -43,12 +44,15 @@ def arguments():
     ''' Interpreta las opciones ingresadas por la línea de comandos '''
     parser = argparse.ArgumentParser(description='Optimiza las imágenes (jpg, png) del directorio indicado')
 
-    parser.add_argument('input', default='input/', nargs='?', help='Directorio que contiene los archivos de entrada, '
-                                                                   'por defecto procesa el directorio llamado "input"')
+    parser.add_argument('input', help='Directorio que contiene los archivos de entrada')
     parser.add_argument('output', default='output/', nargs='?',
                         help='Directorio destino de las imágenes optimizadas, '
                              'por defecto genera la salida en el directorio "output"')
     parser.add_argument('-v', action='count', default=0, help='ejemplo: -v o -vv')
+
+    if len(sys.argv[1:]) == 0:
+        parser.print_help()
+        parser.exit()
 
     return parser.parse_args()
 
